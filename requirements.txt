@@ -1,0 +1,5 @@
+awscli==1.7.12
+boto==2.36.0
+fabric==1.10
+pystache==0.5.4
+requests==2.5.1
