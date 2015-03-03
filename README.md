@@ -25,12 +25,10 @@ sequence of commands:
     * webserver: This will be the instance that runs Nginx.
     * locust_master: This will run the Locust load test master.
     * locust_slave: This will be a list of one or more instances that will be Locust slaves.
-3. Setup the webserver
-```
+3. Setup the webserver ```
 fab -f fabric/fabfile.py -i <ec2_keyfile> -H <webserver> setup_webserver
 ```
-4. Configure the Locust master.
-```
+4. Configure the Locust master. ```
 fab -f fabric/fabfile.py -i <ec2_keyfile> -H <locust_master> setup_load_test_master:target=http://<webserver>
 ```
 5. Start the Locust slaves.
