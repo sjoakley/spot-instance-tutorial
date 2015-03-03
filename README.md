@@ -49,11 +49,15 @@ fab -f fabric/fabfile.py -i <ec2_keyfile> -H [locust_slave,...] setup_load_test_
 
 At this point you will be able to run steps 1 through 6 outlined above. However,
 this approach requires waiting for the instance to launch and manually
-executing the subsequent commands. We can take this a step further by
-leveraging Boto to wait for the instances to become ready, and then
-programmatically run fabric. So your final task is as follows:
+executing the subsequent commands.
 
-![Alt text](http://www.online-image-editor.com//styles/2014/images/example_image.png "Optional title")
+![Alt text](https://raw.githubusercontent.com/sjoakley/spot-instance-tutorial/master/img/flow-1.png "Part 1 Sequence")
+
+We can take this a step further by leveraging Boto to wait for the instances to
+become ready, and then programmatically run fabric. So your final task is as
+follows:
+
+![Alt text](https://raw.githubusercontent.com/sjoakley/spot-instance-tutorial/master/img/flow-2.png "Part 2 Sequence")
 
 - Complete the fabric/wrapper.py script to automate steps 2 through 4 in the steps above.
 
