@@ -4,6 +4,7 @@ import argparse
 import boto.ec2
 from fabfile import *
 from fabric.api import env, execute
+import os
 
 parser = argparse.ArgumentParser(description='Query and configure EC2 spot instances.')
 parser.add_argument('-r', '--region', default='us-east-1', help='EC2 region for cluster.')
@@ -32,6 +33,10 @@ def main():
     # TODO: Query the EC2 instances that were launched by the spot reuqests.
     # See http://boto.readthedocs.org/en/latest/ec2_tut.html
     # and http://boto.readthedocs.org/en/latest/ref/ec2.html for more details.
+    # NOTE: If you followed the pattern in the cli/launch.sh script your
+    # spot requests have been tagged with the name "spot-$USER".
+    # You can use filters={'tag:Name': 'spot-' % os.environ['USER']) to query
+    # only your requests.
 
 
     # TODO: Use the execute command to run fabric tasks from this script.

@@ -1,5 +1,12 @@
 #!/bin/bash
 
+die () {
+    echo >&2 "$@"
+    exit 1
+}
+
+[ "$#" -eq 1 ] || die "The name of the EC2 keypair is required."
+
 OUTPUT_PATH=/tmp/spot_request.json
 
 # Launch an instance to act as the web server.
@@ -9,7 +16,7 @@ LAUNCH_SPECIFICATION="
     \"InstanceType\": \"m2.4xlarge\",
     \"SubnetId\": \"subnet-ac59ebf5\",
     \"SecurityGroupIds\": [\"sg-ff1fab9b\"],
-    \"KeyName\": \"rtp-hadoop\"
+    \"KeyName\": \"$1\"
 }
 "
 aws ec2 request-spot-instances \
