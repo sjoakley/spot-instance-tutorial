@@ -20,26 +20,28 @@ slaves.
 To setup the environment once the exercise steps are complete run the following
 sequence of commands:
 
-1. Launch the spot instances './cli/launch.sh <keypair-name>'
-2. Wait for the spot instances to be launched, and choose roles for the hosts. You will need the following roles.
-    * webserver: This will be the instance that runs Nginx.
-    * locust_master: This will run the Locust load test master.
-    * locust_slave: This will be a list of one or more instances that will be Locust slaves.
-3. Setup the webserver ```
+- Launch the spot instances './cli/launch.sh <keypair-name>'
+- Wait for the spot instances to be launched, and choose roles for the hosts. You will need the following roles.
+    - webserver: This will be the instance that runs Nginx.
+    - locust_master: This will run the Locust load test master.
+    - locust_slave: This will be a list of one or more instances that will be Locust slaves.
+- Setup the webserver
+```
 fab -f fabric/fabfile.py -i <ec2_keyfile> -H <webserver> setup_webserver
 ```
-4. Configure the Locust master. ```
+- Configure the Locust master.
+```
 fab -f fabric/fabfile.py -i <ec2_keyfile> -H <locust_master> setup_load_test_master:target=http://<webserver>
 ```
-5. Start the Locust slaves.
+- Start the Locust slaves.
 ```
 fab -f fabric/fabfile.py -i <ec2_keyfile> -H [locust_slave,...] setup_load_test_slave:target=http://<webserver>,master=<locust_master>
 ```
-6. Visit the page http://<webserver>:8089 and start a load test. Repeat test with varying numbers of users until requests begin to fail.
+- Visit the page http://<webserver>:8089 and start a load test. Repeat test with varying numbers of users until requests begin to fail.
 
 ### Steps
 1. Modify the file cli/launch.py to create additional instances for the load generators.
-    * Bonus points for using different size hosts for the Locust master and slaves.
+    - Bonus points for using different size hosts for the Locust master and slaves.
 2. Complete the TODO sections in fabric/fabfile.py.
     1. Implement the setup\_git\_repository method to clone the git repo for the tutorial.
     2. Implement the stop\_docker\_container method to stop any running Docker containers that may be previous runs of the fabric file.
