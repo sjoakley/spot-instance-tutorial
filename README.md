@@ -40,12 +40,12 @@ fab -f fabric/fabfile.py -i <ec2_keyfile> -H [locust_slave,...] setup_load_test_
 - Visit the page http://<webserver>:8089 and start a load test. Repeat test with varying numbers of users until requests begin to fail.
 
 ### Steps
-1. Modify the file cli/launch.py to create additional instances for the load generators.
+- Modify the file cli/launch.py to create additional instances for the load generators.
     - Bonus points for using different size hosts for the Locust master and slaves.
-2. Complete the TODO sections in fabric/fabfile.py.
-    1. Implement the setup\_git\_repository method to clone the git repo for the tutorial.
-    2. Implement the stop\_docker\_container method to stop any running Docker containers that may be previous runs of the fabric file.
-    3. Complete the configure\_webserver method stop previous containers and launch a new one from the freshly built image.
+- Complete the TODO sections in fabric/fabfile.py.
+    - Implement the setup\_git\_repository method to clone the git repo for the tutorial.
+    - Implement the stop\_docker\_container method to stop any running Docker containers that may be previous runs of the fabric file.
+    - Complete the configure\_webserver method stop previous containers and launch a new one from the freshly built image.
 
 At this point you will be able to run steps 1 through 6 outlined above. However,
 this approach requires waiting for the instance to launch and manually
@@ -53,7 +53,7 @@ executing the subsequent commands. We can take this a step further by
 leveraging Boto to wait for the instances to become ready, and then
 programmatically run fabric. So your final task is as follows:
 
-3. Complete the fabric/wrapper.py script to automate steps 2 through 4 in the steps above.
+- Complete the fabric/wrapper.py script to automate steps 2 through 4 in the steps above.
 
 ## The Solution
 You can find a reference implementation to this exercise in the 'solution'
