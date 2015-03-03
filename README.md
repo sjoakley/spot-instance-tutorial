@@ -15,14 +15,6 @@ At the end of the exercise you will have one webserver running Nginx serving a
 static page, one machine for the Locust master and several instances for locust
 slaves.
 
-1. Modify the file cli/launch.py to create additional instances for the load generators.
-    * Bonus points for using different size hosts for the Locust master and slaves.
-2. Complete the TODO sections in fabric/fabfile.py.
-    1. Implement the setup\_git\_repository method to clone the git repo for the tutorial.
-    2. Implement the stop\_docker\_container method to stop any running Docker containers that may be previous runs of the fabric file.
-    3. Complete the configure\_webserver method stop previous containers and launch a new one from the freshly built image.
-
-
 To setup the environment once the exercise steps are complete run the following
 sequence of commands:
 
@@ -43,3 +35,13 @@ fab -f fabric/fabfile.py -i <ec2_keyfile> -H <locust_master> setup_load_test_mas
 ```
 fab -f fabric/fabfile.py -i <ec2_keyfile> -H [locust_slave,...] setup_load_test_slave:target=http://<webserver>,master=<locust_master>
 ```
+5. Visit the page http://<webserver>:8089 and start a load test. Repeat test with varying numbers of users until requests begin to fail.
+
+### Steps
+1. Modify the file cli/launch.py to create additional instances for the load generators.
+    * Bonus points for using different size hosts for the Locust master and slaves.
+2. Complete the TODO sections in fabric/fabfile.py.
+    1. Implement the setup\_git\_repository method to clone the git repo for the tutorial.
+    2. Implement the stop\_docker\_container method to stop any running Docker containers that may be previous runs of the fabric file.
+    3. Complete the configure\_webserver method stop previous containers and launch a new one from the freshly built image.
+3. Complete the fabric/wrapper.py script to automate steps 2 through 4 in the steps above.
